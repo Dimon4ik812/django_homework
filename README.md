@@ -36,7 +36,4 @@ poetry add --group dev pytest
 pytest --cov 
 ```
 
-## Модули
-```
 
-```
