@@ -24,6 +24,3 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     context = {'product': product}
     return render(request, 'product_detail.html', context=context)
-
-def index(request):
-    return render(request, 'base.html')
