@@ -2,13 +2,13 @@ from operator import index
 
 from django.urls import path
 from catalog.apps import CatalogConfig
-from catalog.views import home, contacts, product_detail
+from catalog.views import CatalogHomeView, CatalogContactsView, CatalogDetailView
 
 app_name = CatalogConfig.name
 
 urlpatterns = [
-    path('home/', home, name='home'),
-    path('contacts/', contacts, name='contacts'),
-    path('product_detail/<int:product_id>/', product_detail, name='product_detail')
+    path('home/', CatalogHomeView.as_view(), name='home'),
+    path('contacts/', CatalogContactsView.as_view(), name='contacts'),
+    path('product_detail/<int:pk>/', CatalogDetailView.as_view(), name='product_detail')
 
     ]
