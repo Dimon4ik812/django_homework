@@ -1,42 +1,36 @@
 from django import forms
 
-from catalog.models import Product
+from blog.models import Blog
 
 
-class ProductForm(forms.ModelForm):
+
+class BlogModelForm(forms.ModelForm):
     class Meta:
-        model = Product
+        model = Blog
         fields = '__all__'
-
+        exclude = ['count_of_views']
 
     def __init__(self, *args, **kwargs):
-        super(ProductForm, self).__init__(*args, **kwargs)
+        super(BlogModelForm, self).__init__(*args, **kwargs)
 
-        self.fields['name'].widget.attrs.update({
+        self.fields['title'].widget.attrs.update({
             'class': 'form-control',  # Добавление CSS-класса для стилизации поля
-            'placeholder': 'Введите название продукта'})  # Текст подсказки внутри поля
+            'placeholder': 'Введите заголовок'})  # Текст подсказки внутри поля
 
-        self.fields['description'].widget.attrs.update({
+        self.fields['content'].widget.attrs.update({
             'class': 'form-control',
-            'placeholder': 'Введите описание продукта'})
+            'placeholder': 'Введите контент'})
 
         self.fields['image'].widget.attrs.update({
             'class': 'form-control',
             })
 
-        self.fields['category'].widget.attrs.update({
-            'class': 'form-control',
-        })
-
-        self.fields['price'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Введите стоимость'})
 
 
     def clean(self):
         cleaned_data = super().clean()
-        name = cleaned_data.get('name')
-        description = cleaned_data.get('description')
+        name = cleaned_data.get('title')
+        description = cleaned_data.get('content')
 
         if name.lower() and description.lower() in ['казино',
                                         'криптовалюта',
@@ -47,20 +41,8 @@ class ProductForm(forms.ModelForm):
                                         'обман',
                                         'полиция',
                                         'радар']:
-            self.add_error('name', 'запрещенное слово')
-            self.add_error('description', 'запрещенное слово')
-
-    def clean_price(self):
-        cleaned_data = super().clean()
-        price = cleaned_data.get('price')
-
-        if price is None:
-            raise forms.ValidationError("Цена должна быть указана.")
-
-        if price < 0:
-            raise forms.ValidationError("Цена не может быть отрицательной.")
-
-        return price
+            self.add_error('title', 'запрещенное слово')
+            self.add_error('content', 'запрещенное слово')
 
 
     def clean_image(self):
@@ -74,5 +56,3 @@ class ProductForm(forms.ModelForm):
             raise forms.ValidationError("Недопустимый формат файла. Загрузите JPEG или PNG.")
 
         return image
-
-

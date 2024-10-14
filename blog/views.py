@@ -1,6 +1,8 @@
 from django.views.generic import DetailView, ListView, DeleteView
 from django.views.generic.edit import CreateView, UpdateView
 from django.urls import reverse_lazy, reverse
+
+from .forms import BlogModelForm
 from .models import Blog
 from django.shortcuts import render
 
@@ -16,7 +18,7 @@ class BlogListView(ListView):
 
 class BlogCreateView(CreateView):
     model = Blog
-    fields = ['title', 'content', 'image', 'count_of_views', 'publication_sign']
+    form_class = BlogModelForm
     template_name = 'blog/blog_form.html'
     success_url = reverse_lazy('blog:home')
 
@@ -35,7 +37,7 @@ class BlogDetailView(DetailView):
 
 class BlogUpdateView(UpdateView):
     model = Blog
-    fields = ['title', 'content', 'image', 'count_of_views', 'publication_sign']
+    form_class = BlogModelForm
     template_name = 'blog/blog_form.html'
     success_url = reverse_lazy('blog:home')
 
@@ -45,5 +47,5 @@ class BlogUpdateView(UpdateView):
 
 class BlogDeleteView(DeleteView):
     model = Blog
-    template_name = 'blog/product_delete.html'
+    template_name = 'blog/blog_delete.html'
     success_url = reverse_lazy('blog:home')
