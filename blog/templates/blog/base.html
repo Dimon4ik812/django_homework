@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <title>Мой блог</title>
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <style>
+        .card {
+    height: 450px; /* Установите желаемую высоту */
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    flex-grow: 1; /* Позволяет телу карточки заполнять доступное пространство */
+}
+
+.card-img-top {
+    max-height: 150px; /* Ограничивает максимум высоты изображения */
+    object-fit: cover; /* Обрезает изображение, чтобы заполнить пространство */
+}
+    </style>
 </head>
 {% include 'blog/includes/inc_menu.html'%}
 {% block content %}

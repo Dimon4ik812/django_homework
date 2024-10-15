@@ -17,10 +17,10 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name='Название')
-    description = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to='images/')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='product') # надо разобраться должна быть связь или нет и как ее правильно настроить
-    price = models.FloatField(help_text='Введите стоимость покупки')
+    description = models.TextField(null=True, blank=True, verbose_name='Описание')
+    image = models.ImageField(upload_to='images/', verbose_name='Картинка')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='product', verbose_name='Категория') # надо разобраться должна быть связь или нет и как ее правильно настроить
+    price = models.FloatField( verbose_name='Цена')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
