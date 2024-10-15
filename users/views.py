@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 class RegisterView(CreateView):
     template_name = 'users/register.html'
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy('catalog:home')
+    success_url = reverse_lazy('users:login')
 
     def form_valid(self, form):
         # Сохраняем пользователя только если форма валидна

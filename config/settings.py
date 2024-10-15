@@ -13,7 +13,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-from django.conf.global_settings import STATICFILES_DIRS, LOGIN_REDIRECT_URL, LOGIN_URL
+from django.conf.global_settings import STATICFILES_DIRS, LOGIN_REDIRECT_URL, LOGIN_URL, LOGOUT_REDIRECT_URL
 
 load_dotenv(override=True)
 
@@ -151,4 +151,5 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 LOGIN_REDIRECT_URL = 'catalog:home'
+LOGOUT_REDIRECT_URL = 'catalog:home'
 LOGIN_URL = 'users:login'

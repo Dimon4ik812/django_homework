@@ -18,4 +18,4 @@ class Command(BaseCommand):
 
         user.save()
 
-        self.stdout.write.(self.style.SUCCESS(f'Successfully created admin user with email {user.email}!'))
+        self.stdout.write(self.style.SUCCESS(f'Successfully created admin user with email {user.email}!'))
