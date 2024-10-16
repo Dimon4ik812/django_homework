@@ -2,12 +2,13 @@ from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from .forms import CustomUserCreationForm
 from django.core.mail import send_mail
+from config.settings import EMAIL_HOST_USER
 
 
 class RegisterView(CreateView):
     template_name = 'users/register.html'
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy('users:login')
+    success_url = reverse_lazy('catalog:home')
 
     def form_valid(self, form):
         # Сохраняем пользователя только если форма валидна
@@ -22,7 +23,7 @@ class RegisterView(CreateView):
     def send_welcome_mail(self, user_email):
         subject = 'Добро пожаловать в наш сервис'
         message = 'Спасибо, что зарегистрировались в нашем сервисе!'
-        from_email = 'Poxxyuct812@yandex.ru'
+        from_email = EMAIL_HOST_USER
         recipient_list = [user_email,]
         send_mail(subject, message, from_email, recipient_list)
 
