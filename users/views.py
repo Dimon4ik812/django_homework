@@ -1,3 +1,4 @@
+from django.contrib.auth import login
 from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView
 from .forms import CustomUserCreationForm
@@ -13,6 +14,7 @@ class RegisterView(CreateView):
     def form_valid(self, form):
         # Сохраняем пользователя только если форма валидна
         user = form.save()
+        login(self.request, user)
         # Отправляем приветственное письмо
         self.send_welcome_mail(user.email)
         return super().form_valid(form)
