@@ -1,10 +1,11 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
+from catalog.models import StyleFormMixin
 from .models import CustomsUser
 
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomUserCreationForm(StyleFormMixin,UserCreationForm):
     phone_number = forms.CharField(max_length=15, required=False, help_text='Необязательное поле. Введите номер телефона')
     username = forms.CharField(max_length=50, required=True)
     usable_password = None
