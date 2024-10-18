@@ -2,8 +2,7 @@ from operator import index
 
 from django.urls import path
 from catalog.apps import CatalogConfig
-from catalog.views import CatalogHomeView, CatalogContactsView, CatalogDetailView, ProductCreateView, ProductUpdateView, \
-    ProductDeleteView
+from catalog.views import CatalogHomeView, CatalogContactsView, CatalogDetailView, ProductCreateView, ProductUpdateView, ProductDeleteView
 
 app_name = CatalogConfig.name
 

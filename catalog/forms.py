@@ -6,7 +6,7 @@ from catalog.models import Product
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = '__all__'
+        exclude = ('owner','publication_status',)
 
 
     def __init__(self, *args, **kwargs):
@@ -70,9 +70,14 @@ class ProductForm(forms.ModelForm):
         if image.size > 5 * 1024 * 1024:
             raise forms.ValidationError("Размер файла не должен превышать 5 МБ.")
 
-        if image.name.endswith(('jpg', 'jpeg', 'png')):
+        if not image.name.endswith(('jpg', 'jpeg', 'png')):
             raise forms.ValidationError("Недопустимый формат файла. Загрузите JPEG или PNG.")
 
         return image
 
 
+
+class ProductModeratorForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['publication_status']

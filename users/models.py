@@ -18,7 +18,7 @@ class CustomsUser(AbstractUser):
 
     class Meta:
         verbose_name = 'Пользователь'
-        verbose_name_plural = 'Пользовактели'
+        verbose_name_plural = 'Пользователи'
 
 
     def __str__(self):
